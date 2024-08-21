@@ -78,7 +78,6 @@ if file is not None:
             st.dataframe(result)
             st.subheader('Visualization')
             if not result.empty:
-                st.write(result)  # Display the DataFrame for debugging
                 if 'index' not in result.columns:
                     result = result.reset_index()
                 fig = px.bar(data_frame=result,x=column,y='count',text='count', template='presentation')
