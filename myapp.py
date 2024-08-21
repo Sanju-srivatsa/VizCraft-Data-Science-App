@@ -10,11 +10,9 @@ st.set_page_config(
     layout="wide"
 )
 
-
-
 # Display the title and subtitle of the web app
 st.title('VizCraft: Interactive Data Navigator')
-st.subheader(':gray[Explore, Analyze, and Visualize All in One Place.]')
+st.subheader('Explore, Analyze, and Visualize All in One Place.')
 
 # Add spacing between title and file uploader
 st.markdown("---")  # Horizontal rule for separation
@@ -34,7 +32,7 @@ if file is not None:
 
     # Section for exploring basic information about the dataset
     st.markdown("---")  # Horizontal rule for separation
-    st.subheader(':gray[Basic info the dataset]')
+    st.subheader('Basic info about the dataset')
 
     # Create tabs for different types of information about the dataset
     tab1, tab2, tab3, tab4 = st.tabs(['Summary', 'Head and Tail', 'Data Types', 'Columns'])
@@ -42,31 +40,31 @@ if file is not None:
     # Tab 1: Summary of the dataset
     with tab1:
         st.write(f'There are {data.shape[0]} rows and {data.shape[1]} columns in the dataset')
-        st.subheader(':gray[Statistical Summary the Dataset]')
+        st.subheader('Statistical Summary of the Dataset')
         st.dataframe(data.describe())
 
     # Tab 2: Head and Tail of the dataset
     with tab2:
-        st.subheader(':gray[Top Rows]')
+        st.subheader('Top Rows')
         top_rows = st.slider('Number of top rows you want', 1, data.shape[0], key='toprowslider')
         st.dataframe(data.head(top_rows))
-        st.subheader(':gray[Bottom Rows]')
+        st.subheader('Bottom Rows')
         bottom_rows = st.slider('Number of bottom rows you want', 1, data.shape[0], key='bottomrowslider')
         st.dataframe(data.tail(bottom_rows))
 
     # Tab 3: Data Types of the columns in the dataset
     with tab3:
-        st.subheader(':gray[Data Types of Columns]')
+        st.subheader('Data Types of Columns')
         st.dataframe(data.dtypes)
 
     # Tab 4: Names of the columns in the dataset
     with tab4:
-        st.subheader(':gray[Column Names]')
+        st.subheader('Column Names')
         st.dataframe(list(data.columns))
 
     # Section for value counts of selected column
     st.markdown("---")  # Horizontal rule for separation
-    st.subheader(':gray[Columns Values to count]')
+    st.subheader('Columns Values to Count')
     with st.expander('Value Count'):
         col1, col2 = st.columns(2)
         with col1:
@@ -79,12 +77,18 @@ if file is not None:
             result = data[column].value_counts().reset_index().head(top_rows)
             st.dataframe(result)
             st.subheader('Visualization')
-            fig = px.bar(data_frame=result, x='index', y=column, text=column, template='presentation')
-            st.plotly_chart(fig)
-            fig = px.line(data_frame=result, x='index', y=column, text=column, template='presentation', markers=True)
-            st.plotly_chart(fig)
-            fig = px.pie(data_frame=result, names='index', values=column, template='presentation')
-            st.plotly_chart(fig)
+            if not result.empty:
+                st.write(result)  # Display the DataFrame for debugging
+                if 'index' not in result.columns:
+                    result = result.reset_index()
+                fig = px.bar(data_frame=result, x='index', y=column, text=column, template='presentation')
+                st.plotly_chart(fig)
+                fig = px.line(data_frame=result, x='index', y=column, text=column, template='presentation', markers=True)
+                st.plotly_chart(fig)
+                fig = px.pie(data_frame=result, names='index', values=column, template='presentation')
+                st.plotly_chart(fig)
+            else:
+                st.warning("No data to display in the bar chart.")
 
     # Section for grouping data and performing aggregations
     st.markdown("---")  # Horizontal rule for separation
@@ -106,7 +110,7 @@ if file is not None:
 
             st.dataframe(result)
 
-            st.subheader(':gray[Data Visualization]')
+            st.subheader('Data Visualization')
             graphs = st.selectbox('Choose your graphs', options=['line', 'bar', 'scatter', 'pie', 'sunburst'])
             if graphs == 'line':
                 x_axis = st.selectbox('Choose X axis', options=list(result.columns))
