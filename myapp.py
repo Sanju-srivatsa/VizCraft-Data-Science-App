@@ -81,11 +81,11 @@ if file is not None:
                 st.write(result)  # Display the DataFrame for debugging
                 if 'index' not in result.columns:
                     result = result.reset_index()
-                fig = px.bar(data_frame=result, x='index', y=column, text=column, template='presentation')
+                fig = px.bar(data_frame=result,x=column,y='count',text='count', template='presentation')
                 st.plotly_chart(fig)
-                fig = px.line(data_frame=result, x='index', y=column, text=column, template='presentation', markers=True)
+                fig = px.line(data_frame=result,x=column,y='count',text='count', template='presentation', markers=True)
                 st.plotly_chart(fig)
-                fig = px.pie(data_frame=result, names='index', values=column, template='presentation')
+                fig = px.pie(data_frame=result,names=column,values='count' template='presentation')
                 st.plotly_chart(fig)
             else:
                 st.warning("No data to display in the bar chart.")
