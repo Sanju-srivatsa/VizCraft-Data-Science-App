@@ -2,7 +2,6 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from ydata_profiling import ProfileReport
 
 # Set the configuration for the Streamlit page and theme
 st.set_page_config(
