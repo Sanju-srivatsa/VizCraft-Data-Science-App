@@ -1,89 +1,77 @@
 # VizCraft: Interactive Data Navigator
-
 ---
 
-**VizCraft** is a powerful and user-friendly web application built with Streamlit that allows you to upload, explore, analyze, and visualize datasets in CSV and Excel formats. This tool is ideal for data analysts, scientists, and anyone interested in gaining insights from their data quickly and easily.
+Welcome to VizCraft, an all-in-one web application that empowers you to upload, explore, analyze, and visualize datasets in CSV and Excel formats. This tool is designed for data analysts, scientists, and anyone interested in gaining quick and insightful analysis from their data.
+
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [File Upload](#file-upload)
+- [Dataset Overview](#dataset-overview)
+- [Columns Values to Count](#columns-values-to-count)
+- [Groupby: Simplify Your Data Analysis](#groupby-simplify-your-data-analysis)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
-
-- **Interactive Data Upload**: Upload your datasets in CSV or Excel format and instantly visualize the data.
-- **Comprehensive Data Overview**: Explore basic information about your dataset, including summary statistics, data types, column names, and more.
-- **Flexible Data Analysis**:
-  - View top and bottom rows of your data.
-  - Count values in selected columns with dynamic visualizations (bar, line, and pie charts).
-  - Group data by one or more columns and perform operations like sum, max, min, mean, median, and count.
-- **Customizable Visualizations**: Generate various types of charts, including line, bar, scatter, pie, and sunburst charts, to better understand your data.
+- **Upload and Analyze Data:** Easily upload CSV or Excel files and explore your data within seconds.
+- **Dataset Overview:** Get a comprehensive summary, view column names, data types, and inspect the top and bottom rows of your dataset.
+- **Column Value Counting:** Select specific columns to count and visualize the frequency of values using various chart types.
+- **Groupby Analysis:** Group your data by one or more columns and perform operations like sum, max, min, mean, median, and count. Visualize the results with different graph types.
 
 ## Installation
+To get started with VizCraft, you need to have Python installed along with the required libraries. You can install the dependencies using the following command:
 
-To run VizCraft locally, follow these steps:
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/vizcraft.git
-   cd vizcraft
-   ```
-
-2. **Create a virtual environment (optional but recommended)**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-
-3. **Install the required packages**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Configure the theme** (Optional):
-   - Create a `.streamlit` directory in the root of your project:
-     ```bash
-     mkdir .streamlit
-     ```
-   - Create a `config.toml` file inside this directory and add the following content:
-     ```toml
-     [theme]
-     base="light"
-     font="serif"
-     ```
-
-5. **Run the application**:
-   ```bash
-   streamlit run myapp.py
-   ```
-
-6. **Access the app**:
-   - Open your web browser and go to `http://localhost:8501/` to use VizCraft.
+```bash
+pip install pandas plotly streamlit
+```
 
 ## Usage
+To run the VizCraft application, use the following command in your terminal:
 
-1. **Upload a Dataset**: Use the file uploader to upload a CSV or Excel file.
-2. **Explore Data**: View a summary of your data, including the number of rows and columns, statistical summaries, top and bottom rows, data types, and column names.
-3. **Value Counts**: Select a column to count the values and visualize them using various chart types.
-4. **Group By Analysis**: Group your data by one or more columns and apply aggregate functions like sum, mean, or count. Visualize the results with customizable charts.
+```bash
+streamlit run app.py
+```
+
+This will open the application in your web browser.
+
+## File Upload
+VizCraft allows you to upload your datasets directly through the sidebar. Supported file formats are CSV and Excel.
+
+- **Example CSV Input:** If you do not have a dataset ready, you can use the provided example dataset by clicking the button to load it.
+
+## Dataset Overview
+Once a dataset is uploaded or the example dataset is loaded, you can explore the following sections:
+
+- **Summary:** View the number of rows and columns and a statistical summary of your dataset.
+- **Columns:** Display the names of all columns in your dataset.
+- **Data Types:** Inspect the data types of each column.
+- **Head and Tail:** View the top and bottom rows of your dataset, with adjustable row numbers.
+
+## Columns Values to Count
+In this section, you can:
+
+- **Select a Column:** Choose a column from your dataset to count the frequency of its values.
+- **Visualize Data:** Generate bar, line, and pie charts to visualize the frequency distribution.
+
+## Groupby: Simplify Your Data Analysis
+This feature allows you to:
+
+- **Group Data:** Group your dataset by one or more columns and perform operations like sum, max, min, mean, median, and count.
+- **Data Visualization:** Choose from various graph types, including line, bar, scatter, pie, and sunburst charts, to visualize the results of your groupby analysis.
 
 ## Example Screenshots
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/92cc4c04-d5ce-4282-a7ed-4847c153850c">
+<img width="1189" alt="image" src="https://github.com/user-attachments/assets/1a308e69-f681-44ec-a16a-3d8c08ba5fbc">
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/37ae162d-73ba-4d54-ad7b-7855e6175b78">
+<img width="1410" alt="image" src="https://github.com/user-attachments/assets/9dd811b0-0e22-431b-8e4c-1a2984a81c2c">
 
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/50ff4d7b-0e63-46ef-b139-7c829704f5df">
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/1de0d51d-d3fa-4242-ace3-ff86588fcbd7">
-
-
-## Credits
-
-This project was made possible with the help and guidance from the [Console Flare]([https://www.youtube.com/c/ConsoleFlare](https://www.youtube.com/@consoleflare)) YouTube channel. I learned the necessary skills and concepts to build this application by following their tutorials.
 
 ## Contributing
-
-Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request.
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or improvements.
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or suggestions, please contact [Sai Srivatsa Thangallapelly](mailto:saisrivatsat@example.com).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-This README file now includes a "Credits" section that acknowledges the learning resources from the Console Flare YouTube channel. Feel free to customize it further as needed.
