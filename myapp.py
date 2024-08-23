@@ -1,48 +1,12 @@
-# Import necessary libraries
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from ydata_profiling import ProfileReport
-from streamlit_pandas_profiling import st_profile_report
+
 
 # Set the configuration for the Streamlit page and theme
 st.set_page_config(
-    page_title='VizCraft',  # Title of the web page
-    page_icon='🗿',  # Icon for the web page
     layout="wide"
 )
-
-# Custom CSS to style the tab headings
-st.markdown("""
-    <style>
-    .stTabs [data-baseweb="tab"] {
-        font-size: 24px !important;
-        font-weight: bold !important;
-        color: #333 !important;
-        background-color: #f0f0f0 !important;
-        padding: 10px !important;
-        border-radius: 10px !important;
-    }
-    .stTabs [data-baseweb="tab"]:hover {
-        color: #f63366 !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# Sidebar for file upload or example dataset
-with st.sidebar:
-    st.title("VizCraft")
-    st.subheader("Data is Everything")
-    st.markdown(
-        """VizCraft is a powerful and user-friendly web application built with Streamlit that allows you to upload, explore, 
-        analyze, and visualize datasets in CSV and Excel formats. This tool is ideal for data analysts, scientists, and anyone 
-        interested in gaining insights from their data quickly and easily."""
-    )
-    #st.header("EAD Functionalities")
-    #st.success("Connected ", icon="💚")
-    st.sidebar.markdown("""
-    [Example CSV input file](https://raw.githubusercontent.com/Sanju-srivatsa/VizCraft-Data-Science-App/main/titanic.csv)
-    """)
 
 # Display the title and subtitle of the web app
 st.title('VizCraft: Interactive Data Navigator')
@@ -51,34 +15,21 @@ st.subheader('Explore, Analyze, and Visualize All in One Place.')
 # Add spacing between title and file uploader
 st.markdown("---")  # Horizontal rule for separation
 
-
-
-# Initialize the `data` variable and the `is_example` flag
-data = None
-is_example = False
-
 # File uploader component to upload CSV or Excel files
 file = st.file_uploader('Drop csv or excel file', type=['csv', 'xlsx'])
 
-# Check if the file is uploaded or load the example dataset
 if file is not None:
     # Read the file based on its extension (CSV or Excel)
     if file.name.endswith('csv'):
         data = pd.read_csv(file)  # Read CSV file
     else:
         data = pd.read_excel(file)  # Read Excel file
-else:
-    if st.button('Press to use Example Dataset'):
-        # Load the example dataset if no file is uploaded
-        data = pd.read_csv('https://raw.githubusercontent.com/Sanju-srivatsa/VizCraft-Data-Science-App/main/titanic.csv')
-        is_example = True  # Set flag to indicate that the example dataset is being used
-        st.success('Example dataset loaded!')
-
-# Ensure the tabs are displayed if data is available
-if data is not None:
+        
     # Display the uploaded data in a dataframe format
     st.subheader('Input Dataframe')
     st.dataframe(data)
+    
+    
     st.info('File is Successfully Loaded', icon='💡')
     st.markdown("---")
 
