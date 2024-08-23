@@ -32,7 +32,7 @@ with st.sidebar:
     st.title("VizCraft")
     st.subheader("Data is Everything")
     st.markdown(
-        """VizCraft Pro is a powerful and user-friendly web application built with Streamlit that allows you to upload, explore, 
+        """VizCraft is a powerful and user-friendly web application built with Streamlit that allows you to upload, explore, 
         analyze, and visualize datasets in CSV and Excel formats. This tool is ideal for data analysts, scientists, and anyone 
         interested in gaining insights from their data quickly and easily."""
     )
@@ -81,13 +81,11 @@ if data is not None:
     st.markdown("---")
 
     # Create main tabs for the different sections
-    main_tab2, main_tab3, main_tab4 = st.tabs(
-        [ 'Dataset Overview', 'Columns Values to Count', 'Groupby: Simplify Your Data Analysis'])
+    main_tab1, main_tab2, main_tab3 = st.tabs(
+        ['Dataset Overview', 'Columns Values to Count', 'Groupby: Simplify Your Data Analysis'])
 
-
-
-    # Tab 2: Basic Info About the Dataset
-    with main_tab2:
+    # Tab 1: Basic Info About the Dataset
+    with main_tab1:
         st.subheader('Dataset Overview')
         # Create subtabs for different types of information about the dataset
         tab1, tab2, tab3, tab4 = st.tabs(['Summary', 'Columns', 'Data Types', 'Head and Tail'])
@@ -119,8 +117,8 @@ if data is not None:
                 bottom_rows = st.slider('Number of bottom rows you want', 1, data.shape[0], key='bottomrowslider')
                 st.dataframe(data.tail(bottom_rows))
 
-    # Tab 3: Columns Values to Count
-    with main_tab3:
+    # Tab 2: Columns Values to Count
+    with main_tab2:
         st.subheader('Columns Values to Count')
         st.markdown("---")
         if is_example:
@@ -151,8 +149,8 @@ if data is not None:
                     else:
                         st.warning("No data to display in the bar chart.")
 
-    # Tab 4: Groupby: Simplify Your Data Analysis
-    with main_tab4:
+    # Tab 3: Groupby: Simplify Your Data Analysis
+    with main_tab3:
         st.subheader('Groupby: Simplify Your Data Analysis')
         st.markdown("---")
         if is_example:
@@ -206,4 +204,5 @@ if data is not None:
                         path = st.multiselect('Choose your Path', options=list(result.columns))
                         fig = px.sunburst(data_frame=result, path=path, values='Result')
                         st.plotly_chart(fig)
+        
 
